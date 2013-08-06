@@ -17,4 +17,4 @@ fun! SetMkfile()
   return "."
 endf
 
-command! -nargs=* Make let $mkpath = SetMkfile() | make <args> -C $mkpath | cwindow 10
+command! -nargs=* Make let $mkpath = SetMkfile() | !nice make <args> -C $mkpath

@@ -58,7 +58,7 @@ nnoremap <C-j> :tab split <Return>
 nnoremap <C-n> :next <Return>
 nnoremap <C-p> :prev <Return>
 
-nnoremap <leader>b :Make -j4<Return>
+nnoremap <leader>b :Make -j8<Return>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
