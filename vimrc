@@ -59,17 +59,19 @@ nnoremap <C-j> :tab split <Return>
 nnoremap <C-n> :next <Return>
 nnoremap <C-p> :prev <Return>
 
-nnoremap <leader>b :Make -j8<Return>
+nnoremap <leader>b :BuildBuddy -j8<Return>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle.git'
 
 Bundle 'ervandew/supertab.git'
+Bundle 'tpope/vim-dispatch'
 Bundle 'vim-scripts/AutoTag'
 Bundle 'vim-scripts/Cpp11-Syntax-Support'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/reload.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'xolox/vim-misc'
 Bundle 'wincent/Command-T'
 
