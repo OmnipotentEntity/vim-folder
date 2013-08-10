@@ -1,0 +1,6 @@
+[submodule "bundle/vim-dispatch"]
+	path = bundle/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch
+[submodule "bundle/vim-misc"]
+	path = bundle/vim-misc
+	url = git@github.com:xolox/vim-misc
