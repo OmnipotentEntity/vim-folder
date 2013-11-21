@@ -28,3 +28,9 @@
 [submodule "bundle/Command-T"]
 	path = bundle/Command-T
 	url = git@github.com:wincent/Command-T
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git

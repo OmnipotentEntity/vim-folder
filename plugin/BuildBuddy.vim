@@ -18,3 +18,20 @@ fun! SetMkfile()
 endf
 
 command! -nargs=* BuildBuddy let $mkpath = SetMkfile() | Make <args> -C $mkpath
+
+fun! SetYcmfile()
+  let fileYcm = ".ycm_extra_conf.py"
+  let pathYcm = "./"
+  let depth = 1
+  while depth < 4
+    if filereadable(pathYcm . fileYcm)
+      return pathYcm . fileYcm
+    endif
+
+    let depth += 1
+    let pathYcm = "../" . pathYcm
+  endwhile
+  return "~/.vim/" . fileYcm
+endf
+
+let g:ycm_global_ycm_extra_conf = SetYcmfile()

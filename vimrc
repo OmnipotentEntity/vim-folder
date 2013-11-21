@@ -1,6 +1,4 @@
 " Configuration file for vim
-set runtimepath=~/.vim,/usr/share/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vimcurrent,/usr/share/vim/vimfiles/after,/usr/share/vim/addons/after,~/.vim/after
-
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
@@ -61,6 +59,18 @@ nnoremap <C-p> :prev <Return>
 
 nnoremap <leader>b :BuildBuddy -j8<Return>
 
+let g:SuperTabCrMapping = 0
+
+" Handled within BuildBuddy
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_auto_refresh_includes = 1
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wformat=2 -Wall -Wextra -Wuninitialized -Werror -Wno-format-nonliteral -Wno-non-template-friend -Wstrict-null-sentinel -Woverloaded-virtual -Wnoexcept -Wnon-virtual-dtor -Winit-self'
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle.git'
@@ -74,4 +84,5 @@ Bundle 'vim-scripts/reload.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'wincent/Command-T'
-
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
