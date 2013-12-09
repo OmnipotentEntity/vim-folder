@@ -57,7 +57,7 @@ nnoremap <C-j> :tab split <Return>
 nnoremap <C-n> :next <Return>
 nnoremap <C-p> :prev <Return>
 
-nnoremap <leader>b :BuildBuddy -j8<Return>
+nnoremap <leader>b :BuildBuddy -j4<Return>
 
 let g:SuperTabCrMapping = 0
 
