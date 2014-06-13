@@ -57,7 +57,7 @@ nnoremap <C-j> :tab split <Return>
 nnoremap <C-n> :next <Return>
 nnoremap <C-p> :prev <Return>
 
-nnoremap <leader>b :BuildBuddy -j4<Return>
+nnoremap <leader>b :BuildBuddy -j35<Return>
 
 let g:SuperTabCrMapping = 0
 
@@ -86,3 +86,4 @@ Bundle 'xolox/vim-misc'
 Bundle 'wincent/Command-T'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
+Bundle 'godlygeek/tabular'
