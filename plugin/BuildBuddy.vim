@@ -17,4 +17,5 @@ fun! SetMkfile()
   return "."
 endf
 
-command! -nargs=* BuildBuddy let $mkpath = SetMkfile() | Make <args> -C $mkpath
+let cpuCores = system('grep -c ^processor /proc/cpuinfo')+1
+command! -nargs=* BuildBuddy let $mkpath = SetMkfile() | Make <args> -C $mkpath -j$cpuCores

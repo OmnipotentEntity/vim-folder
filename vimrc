@@ -35,7 +35,10 @@ set wildmode=longest,list,full
 set wmh=0
 set makeprg=nice\ make
 
+au Bufenter *.hs compiler ghc
+
 syntax on
+filetype plugin on
 
 colorscheme sorcerer
 
@@ -57,7 +60,7 @@ nnoremap <C-j> :tab split <Return>
 nnoremap <C-n> :next <Return>
 nnoremap <C-p> :prev <Return>
 
-nnoremap <leader>b :BuildBuddy -j35<Return>
+nnoremap <leader>b :BuildBuddy<Return>
 
 let g:SuperTabCrMapping = 0
 
@@ -70,6 +73,25 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wformat=2 -Wall -Wextra -Wuninitialized -Werror -Wno-format-nonliteral -Wno-non-template-friend -Wstrict-null-sentinel -Woverloaded-virtual -Wnoexcept -Wnon-virtual-dtor -Winit-self'
+
+let g:ycm_extra_conf_globlist = ['~/work/*']
+
+let g:syntastic_haskell_checkers = ['hdevtools', 'hlint', 'ghc_mod']
+
+function! FindCabalSandboxRoot()
+    return finddir('.cabal-sandbox', './;')
+endfunction
+
+function! FindCabalSandboxRootPackageConf()
+    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
+endfunction
+
+let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-db='.FindCabalSandboxRootPackageConf()
+au Bufenter *.hs let b:ghc_staticoptions = '-ilib -isrc -i. -idist/build/autogen -Wall -package-db='.FindCabalSandboxRootPackageConf()
+
+let g:haddock_browser = '/usr/bin/firefox'
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -87,3 +109,5 @@ Bundle 'wincent/Command-T'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
+Bundle 'lukerandall/haskellmode-vim'
+
