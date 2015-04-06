@@ -92,6 +92,7 @@ au Bufenter *.hs let b:ghc_staticoptions = '-ilib -isrc -i. -idist/build/autogen
 let g:haddock_browser = '/usr/bin/firefox'
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
+let g:haddock_docdir = '/usr/share/haddock-2.13.2/html'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
