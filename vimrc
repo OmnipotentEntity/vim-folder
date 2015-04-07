@@ -33,7 +33,6 @@ set visualbell
 set wildmenu
 set wildmode=longest,list,full
 set wmh=0
-set makeprg=nice\ make
 
 au Bufenter *.hs compiler ghc
 

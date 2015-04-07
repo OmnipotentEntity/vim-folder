@@ -17,5 +17,22 @@ fun! SetMkfile()
   return "."
 endf
 
-let cpuCores = system('grep -c ^processor /proc/cpuinfo')+1
-command! -nargs=* BuildBuddy let $mkpath = SetMkfile() | Make <args> -C $mkpath -j$cpuCores
+function! SetMakeprg()
+  if !empty($NUMBER_OF_PROCESSORS)
+    " this works on Windows and provides a convenient override mechanism otherwise
+    let n = $NUMBER_OF_PROCESSORS + 0
+  elseif filereadable('/proc/cpuinfo')
+    " this works on most Linux systems
+    let n = system("grep -c '^processor' /proc/cpuinfo")
+  elseif executable('/usr/sbin/psrinfo')
+    " this works on Solaris
+    let n = system('/usr/sbin/psrinfo -p')
+  else
+    " default to single process if we can't figure it out automatically
+    let n = 1
+  endif
+  let &makeprg = 'make' . (n > 1 ? (' -j'.(n + 1)) : '')
+endfunction
+call SetMakeprg()
+
+command! -nargs=* BuildBuddy let $mkpath = SetMkfile() | Make <args> -C $mkpath
