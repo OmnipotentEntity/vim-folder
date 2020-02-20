@@ -1,23 +1,57 @@
-" Configuration file for vim
-" Normally we use vim-extensions. If you want true vi-compatibility
-" remove change the following statements
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle.git'
+
+Bundle 'ervandew/supertab.git'
+Bundle 'tpope/vim-dispatch'
+Bundle 'vim-scripts/AutoTag'
+Bundle 'vim-scripts/Cpp11-Syntax-Support'
+Bundle 'vim-scripts/a.vim'
+Bundle 'vim-scripts/reload.vim'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'xolox/vim-misc'
+Bundle 'wincent/Command-T'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'godlygeek/tabular'
+Bundle 'neovimhaskell/haskell-vim'
+Bundle 'rust-lang/rust.vim'
+
+Bundle 'bling/vim-airline'
+let g:airline_powerline_fonts=1
+
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
 
 " Now we set some defaults for the editor
 set autoindent		" always set autoindenting on
 set autowrite		" Automatically save before commands like :next and :make
+set colorcolumn=80
+set completeopt=longest,menuone
 set cuc
 set cul
+set encoding=utf-8
 set expandtab
-set history=50		" keep 50 lines of command line history
+set foldenable
+set foldmethod=syntax
+set foldlevel=1
+set foldopen=block,hor,insert,jump,mark,percent,search,tag,undo,quickfix
+set formatoptions=q
+set history=1000		" keep 50 lines of command line history
 set hls
 set ignorecase		" Do case insensitive matching
 set incsearch
+set lazyredraw
 set listchars+=precedes:<,extends:>
 set mouse=a
+set nostartofline
+set report=0
 set ruler		" show the cursor position all the time
 set shiftwidth=2
+set shortmess=aOstT
 set showcmd		" Show (partial) command in status line.
 set showmatch
 set sidescroll=5
@@ -27,17 +61,43 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set t_Co=256
 set tabstop=2
 set tags=./tags;/
-set textwidth=0		" Don't wrap lines by default
+set textwidth=80		" Don't wrap lines by default
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more than
 set visualbell
 set wildmenu
 set wildmode=longest,list,full
 set wmh=0
 
+set cpoptions=aABceFsmq
+
+set backup
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
+
+set laststatus=2
+
 au Bufenter *.hs compiler ghc
 
+au BufNewFile,BufRead *.hsc    set filetype=haskell
+au BufNewFile,BufRead *.rbi    set filetype=ruby
+
+" Make editing this file nice
+autocmd Filetype vim set foldmarker={,} foldlevel=0 foldmethod=marker expandtab shiftwidth=4 tabstop=4
+
+autocmd Filetype ruby          set shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype ruby          map <Leader>T :call system("tmux splitw -v 'rake test;read';tmux last-pane")<cr>
+autocmd Filetype javascript    set shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype erlang        set shiftwidth=4 tabstop=4 expandtab
+autocmd Filetype python        set shiftwidth=4 tabstop=4 expandtab
+autocmd Filetype c,cpp         set shiftwidth=4 tabstop=4 foldlevel=0
+autocmd Filetype html,xml      set shiftwidth=1 tabstop=1 expandtab
+autocmd Filetype eruby         set shiftwidth=1 tabstop=1 expandtab
+autocmd Filetype tex,plaintex  set shiftwidth=2 tabstop=2 expandtab wrap lbr
+autocmd Filetype yaml          set shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype haskell,cabal set shiftwidth=4 tabstop=4 shiftwidth=4 expandtab shiftround
+
 syntax on
-filetype plugin on
+filetype plugin indent on
 
 colorscheme sorcerer
 
@@ -93,21 +153,5 @@ let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 let g:haddock_docdir = '/usr/share/haddock-2.13.2/html'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle.git'
-
-Bundle 'ervandew/supertab.git'
-Bundle 'tpope/vim-dispatch'
-Bundle 'vim-scripts/AutoTag'
-Bundle 'vim-scripts/Cpp11-Syntax-Support'
-Bundle 'vim-scripts/a.vim'
-Bundle 'vim-scripts/reload.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'wincent/Command-T'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'godlygeek/tabular'
-Bundle 'lukerandall/haskellmode-vim'
-
+syntax on
+hi ColorColumn ctermbg=DarkBlue
