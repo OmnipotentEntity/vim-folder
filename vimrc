@@ -2,25 +2,22 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle.git'
 
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'dense-analysis/ale'
 Bundle 'ervandew/supertab.git'
+Bundle 'godlygeek/tabular'
+Bundle 'lukerandall/haskellmode-vim'
+Bundle 'rust-lang/rust.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'vim-scripts/AutoTag'
 Bundle 'vim-scripts/Cpp11-Syntax-Support'
 Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/reload.vim'
 Bundle 'vim-scripts/taglist.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'xolox/vim-misc'
 Bundle 'wincent/Command-T'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'godlygeek/tabular'
-Bundle 'neovimhaskell/haskell-vim'
-Bundle 'rust-lang/rust.vim'
-
+Bundle 'xolox/vim-misc'
 Bundle 'bling/vim-airline'
+
 let g:airline_powerline_fonts=1
 
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
@@ -126,16 +123,10 @@ let g:SuperTabCrMapping = 0
 " Handled within BuildBuddy
 " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
-let g:syntastic_enable_signs = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_auto_refresh_includes = 1
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wformat=2 -Wall -Wextra -Wuninitialized -Werror -Wno-format-nonliteral -Wno-non-template-friend -Wstrict-null-sentinel -Woverloaded-virtual -Wnoexcept -Wnon-virtual-dtor -Winit-self'
+set statusline+=%#warningmsg#
+set statusline+=%*
 
 let g:ycm_extra_conf_globlist = ['~/work/*']
-
-let g:syntastic_haskell_checkers = ['hdevtools', 'hlint', 'ghc_mod']
 
 function! FindCabalSandboxRoot()
     return finddir('.cabal-sandbox', './;')
@@ -145,7 +136,6 @@ function! FindCabalSandboxRootPackageConf()
     return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
 endfunction
 
-let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-db='.FindCabalSandboxRootPackageConf()
 au Bufenter *.hs let b:ghc_staticoptions = '-ilib -isrc -i. -idist/build/autogen -Wall -package-db='.FindCabalSandboxRootPackageConf()
 
 let g:haddock_browser = '/usr/bin/firefox'
