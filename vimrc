@@ -1,3 +1,6 @@
+set nocompatible
+filetype off
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle.git'
@@ -9,6 +12,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'rust-lang/rust.vim'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/AutoTag'
 Bundle 'vim-scripts/Cpp11-Syntax-Support'
 Bundle 'vim-scripts/a.vim'
@@ -18,24 +22,21 @@ Bundle 'wincent/Command-T'
 Bundle 'xolox/vim-misc'
 Bundle 'bling/vim-airline'
 
+call vundle#end()
+filetype plugin indent on
+
 let g:airline_powerline_fonts=1
 
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
 
 " Now we set some defaults for the editor
 set autoindent		" always set autoindenting on
 set autowrite		" Automatically save before commands like :next and :make
-set colorcolumn=80
 set completeopt=longest,menuone
 set cuc
 set cul
 set encoding=utf-8
 set expandtab
-set foldenable
-set foldmethod=syntax
-set foldlevel=1
-set foldopen=block,hor,insert,jump,mark,percent,search,tag,undo,quickfix
 set formatoptions=q
 set history=1000		" keep 50 lines of command line history
 set hls
@@ -77,6 +78,10 @@ au Bufenter *.hs compiler ghc
 
 au BufNewFile,BufRead *.hsc    set filetype=haskell
 au BufNewFile,BufRead *.rbi    set filetype=ruby
+au BufNewFile,BufRead *.rs    set filetype=rust
+
+set colorcolumn=80
+au BufNewFile,BufRead *.rs setlocal colorcolumn=100
 
 " Make editing this file nice
 autocmd Filetype vim set foldmarker={,} foldlevel=0 foldmethod=marker expandtab shiftwidth=4 tabstop=4
@@ -86,7 +91,7 @@ autocmd Filetype ruby          map <Leader>T :call system("tmux splitw -v 'rake 
 autocmd Filetype javascript    set shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype erlang        set shiftwidth=4 tabstop=4 expandtab
 autocmd Filetype python        set shiftwidth=4 tabstop=4 expandtab
-autocmd Filetype c,cpp         set shiftwidth=4 tabstop=4 foldlevel=0
+autocmd Filetype c,cpp         set shiftwidth=2 tabstop=2 foldlevel=0
 autocmd Filetype html,xml      set shiftwidth=1 tabstop=1 expandtab
 autocmd Filetype eruby         set shiftwidth=1 tabstop=1 expandtab
 autocmd Filetype tex,plaintex  set shiftwidth=2 tabstop=2 expandtab wrap lbr
@@ -121,7 +126,7 @@ nnoremap <leader>b :BuildBuddy<Return>
 let g:SuperTabCrMapping = 0
 
 " Handled within BuildBuddy
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 set statusline+=%#warningmsg#
 set statusline+=%*
