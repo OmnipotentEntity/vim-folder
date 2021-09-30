@@ -91,12 +91,14 @@ autocmd Filetype ruby          map <Leader>T :call system("tmux splitw -v 'rake 
 autocmd Filetype javascript    set shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype erlang        set shiftwidth=4 tabstop=4 expandtab
 autocmd Filetype python        set shiftwidth=4 tabstop=4 expandtab
-autocmd Filetype c,cpp         set shiftwidth=2 tabstop=2 foldlevel=0
+autocmd Filetype c,cpp         set shiftwidth=2 tabstop=2 foldlevel=100
+autocmd Filetype rust          set shiftwidth=4 tabstop=4 expandtab colorcolumn=100 textwidth=100 foldlevel=100
 autocmd Filetype html,xml      set shiftwidth=1 tabstop=1 expandtab
 autocmd Filetype eruby         set shiftwidth=1 tabstop=1 expandtab
 autocmd Filetype tex,plaintex  set shiftwidth=2 tabstop=2 expandtab wrap lbr
 autocmd Filetype yaml          set shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype haskell,cabal set shiftwidth=4 tabstop=4 shiftwidth=4 expandtab shiftround
+autocmd Filetype vim           set shiftwidth=4 tabstop=4 shiftwidth=4 textwidth& colorcolumn&
 
 syntax on
 filetype plugin indent on
